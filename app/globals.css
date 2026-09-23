@@ -1,26 +1,68 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #f7faf9;
+  color: #0f1f26;
+}
+
+.leaflet-container {
+  font-family: inherit;
+  background: #eaf4ef;
+}
+
+.sehat-popup .leaflet-popup-content-wrapper {
+  border-radius: 20px;
+  padding: 0;
+  box-shadow: 0 18px 40px -14px rgba(15, 31, 38, 0.35);
+}
+
+.sehat-popup .leaflet-popup-content {
+  margin: 16px 18px;
+}
+
+.sehat-popup .leaflet-popup-tip {
+  box-shadow: none;
+}
+
+.pin {
+  width: 34px;
+  height: 34px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: var(--c);
+  border: 3px solid #fff;
+  box-shadow: 0 6px 14px rgba(15, 31, 38, 0.35);
+  display: grid;
+  place-items: center;
+  transition: transform 0.15s ease;
+}
+
+.pin > span {
+  transform: rotate(45deg);
+  display: grid;
+  color: #fff;
+}
+
+.pin.sel {
+  transform: rotate(-45deg) scale(1.25);
+}
+
+.user-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #0b6b63;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 8px rgba(11, 107, 99, 0.22);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
 }
