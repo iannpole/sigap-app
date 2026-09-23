@@ -1,69 +1,107 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useMemo, useRef, useState } from "react";
+import dynamic from "next/dynamic";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import CategoryTabs from "@/components/CategoryTabs";
+import LeftPanel from "@/components/LeftPanel";
+import NearbyPanel from "@/components/NearbyPanel";
+import InfoCards from "@/components/InfoCards";
+import Footer from "@/components/Footer";
+import { useHello } from "@/components/Toast";
+import { RADIUS_KM, USER, facilities } from "@/data/facilities";
+import { toFacilities } from "@/lib/geo";
+import { SUB_META } from "@/lib/meta";
+import type { Filter, Group, Sub } from "@/lib/types";
+
+const MapView = dynamic(() => import("@/components/MapView"), {
+  ssr: false,
+  loading: () => <div className="h-full w-full animate-pulse bg-mist" />,
+});
+
+export default function Page() {
+  const hello = useHello();
+  const stageRef = useRef<HTMLDivElement>(null);
+  const [filter, setFilter] = useState<Filter>({ group: "all", sub: "all" });
+  const [query, setQuery] = useState("");
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [focus, setFocus] = useState<{ lat: number; lng: number; n: number } | null>(null);
+
+  // BACKEND: derive this list from your API response instead of the local GeoJSON
+  const all = useMemo(() => toFacilities(facilities, USER), []);
+
+  const counts = useMemo(() => {
+    const c = { all: all.length, kesehatan: 0, rekreasi: 0, subs: {} as Record<string, number> };
+    all.forEach((f) => {
+      c[f.group] += 1;
+      c.subs[f.sub] = (c.subs[f.sub] ?? 0) + 1;
+    });
+    return c;
+  }, [all]);
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return all.filter(
+      (f) =>
+        (filter.group === "all" || f.group === filter.group) &&
+        (filter.sub === "all" || f.sub === filter.sub) &&
+        (!q || `${f.name} ${f.address} ${f.sub}`.toLowerCase().includes(q))
+    );
+  }, [all, filter, query]);
+
+  const nearby = useMemo(() => filtered.filter((f) => f.distance <= RADIUS_KM), [filtered]);
+
+  const setGroup = (g: "all" | Group) => {
+    setFilter({ group: g, sub: "all" });
+    setSelectedId(null);
+    hello();
+  };
+
+  const setSub = (s: "all" | Sub) => {
+    setFilter((prev) => (s === "all" ? { group: prev.group, sub: "all" } : { group: SUB_META[s].group, sub: s }));
+    setSelectedId(null);
+    hello();
+  };
+
+  const pick = (id: string) => {
+    setSelectedId(id);
+    const f = all.find((x) => x.id === id);
+    if (f) setFocus({ lat: f.lat, lng: f.lng, n: Date.now() });
+  };
+
+  const toggleFullscreen = () => {
+    if (document.fullscreenElement) document.exitFullscreen();
+    else stageRef.current?.requestFullscreen();
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+    <>
+      <Header />
+      <main className="mx-auto max-w-[1400px] space-y-8 px-4 py-8 md:px-8">
+        <Hero query={query} setQuery={setQuery} total={all.length} onGroup={setGroup} />
+
+        <CategoryTabs filter={filter} counts={counts} onGroup={setGroup} onSub={setSub} />
+
+        <div ref={stageRef} className="relative rounded-[2rem] bg-mist shadow-soft lg:h-[740px] [&:fullscreen]:overflow-auto [&:fullscreen]:bg-white [&:fullscreen]:p-4">
+          <div className="relative h-[480px] overflow-hidden rounded-[2rem] lg:absolute lg:inset-0 lg:h-full">
+            <MapView
+              facilities={filtered}
+              selectedId={selectedId}
+              onSelect={setSelectedId}
+              user={USER}
+              radiusKm={RADIUS_KM}
+              focus={focus}
+              onFullscreen={toggleFullscreen}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <LeftPanel filter={filter} counts={counts} onGroup={setGroup} onSub={(s) => setSub(s)} />
+          </div>
+          <NearbyPanel items={nearby} selectedId={selectedId} onPick={pick} radiusKm={RADIUS_KM} origin={USER.label} />
         </div>
+
+        <InfoCards />
       </main>
-    </div>
+      <Footer />
+    </>
   );
 }
