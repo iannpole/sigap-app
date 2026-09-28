@@ -1,2 +1,4 @@
 allowBuilds:
-  unrs-resolver: set this to true or false
+  bcrypt: false
+  esbuild: true
+  unrs-resolver: false
