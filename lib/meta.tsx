@@ -2,7 +2,7 @@ import { Dumbbell, HeartPulse, Hospital, Landmark, Pill, Stethoscope, Tent, Tree
 import type { LucideIcon } from "lucide-react";
 import type { Group, Sub } from "./types";
 
-export const GROUPS: Record
+export const GROUPS: Record<
   Group,
   { label: string; color: string; soft: string; icon: LucideIcon; subs: Sub[] }
 > = {
