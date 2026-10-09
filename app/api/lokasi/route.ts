@@ -1,9 +1,54 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { getDataSource } from "@/lib/data-source";
+import { getAuthAdmin } from "@/lib/auth";
 import { LokasiLayanan } from "@/entities";
 import { toFeature } from "@/lib/geojson";
+import { ok, fail, readJson, unauthorized, serverError } from "@/lib/api";
+import { parseLokasiBody, subKategoriExists, loadLokasiProps, pointSql } from "@/lib/lokasi-input";
 
+export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+
+export async function POST(req: Request) {
+  try {
+    const admin = await getAuthAdmin(req);
+    if (!admin) return unauthorized();
+
+    const body = await readJson(req);
+    if (!body) return fail("Body harus berupa JSON object", 400);
+    const parsed = parseLokasiBody(body, false);
+    if ("error" in parsed) return fail(parsed.error, 400);
+    const v = parsed.value;
+
+    const ds = await getDataSource();
+    if (!(await subKategoriExists(ds, v.subKategoriId!))) {
+      return fail("subKategoriId tidak ditemukan", 400);
+    }
+
+    const result = await ds
+      .createQueryBuilder()
+      .insert()
+      .into(LokasiLayanan)
+      .values({
+        subKategoriId: v.subKategoriId,
+        nama: v.nama,
+        wilayah: v.wilayah,
+        koordinat: pointSql(v.lng!, v.lat!),
+        alamat: v.alamat ?? null,
+        noKontak: v.noKontak ?? null,
+        jamOperasional: v.jamOperasional ?? null,
+        fotoUrl: v.fotoUrl ?? null,
+        createdById: admin.id,
+      } as any)
+      .execute();
+
+    const id = result.identifiers[0].id as number;
+    return ok(await loadLokasiProps(ds, id), "", 201);
+  } catch (err) {
+    console.error("POST /api/lokasi", err);
+    return serverError();
+  }
+}
 
 const bad = (error: string) => NextResponse.json({ error }, { status: 400 });
 

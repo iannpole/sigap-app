@@ -1,0 +1,162 @@
+{
+    "type": "FeatureCollection",
+    "name": "damkar_bogor",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        }
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_pos": "Mako Damkar Kota Bogor (Sukasari)",
+                "kategori": "Markas Komando",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.808500,
+                    -6.612200
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_pos": "Pos Damkar Sektor Cibuluh",
+                "kategori": "Pos Sektor",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.815300,
+                    -6.565100
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_pos": "Pos Damkar Sektor Yasmin",
+                "kategori": "Pos Sektor",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.772400,
+                    -6.561500
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_pos": "Mako Damkar Kabupaten Bogor (Cibinong)",
+                "kategori": "Markas Komando",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.830100,
+                    -6.478500
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_pos": "Pos Damkar Sektor Ciawi",
+                "kategori": "Pos Sektor",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.852200,
+                    -6.650100
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_pos": "Pos Damkar Sektor Cileungsi",
+                "kategori": "Pos Sektor",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.965400,
+                    -6.405200
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_pos": "Pos Damkar Sektor Leuwiliang",
+                "kategori": "Pos Sektor",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.625100,
+                    -6.575300
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_pos": "Pos Damkar Sektor Parung",
+                "kategori": "Pos Sektor",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.730500,
+                    -6.425100
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_pos": "Pos Damkar Sektor Ciomas",
+                "kategori": "Pos Sektor",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.765200,
+                    -6.602400
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_pos": "Pos Damkar Sektor Citeureup",
+                "kategori": "Pos Sektor",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.878100,
+                    -6.486200
+                ]
+            }
+        }
+    ]
+}

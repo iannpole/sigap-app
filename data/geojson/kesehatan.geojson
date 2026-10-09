@@ -1,0 +1,552 @@
+{
+    "type": "FeatureCollection",
+    "name": "rs_bogor_lengkap",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        }
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS PMI Bogor",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.801366,
+                    -6.598717
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RSUD Kota Bogor",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.772579,
+                    -6.576922
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "Siloam Hospitals Bogor",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.809315,
+                    -6.591605
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS EMC Sentul",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.866500,
+                    -6.568300
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS Hermina Bogor",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.775800,
+                    -6.564500
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS Azra Bogor",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.806600,
+                    -6.579400
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS Karya Bhakti Pratiwi",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.741000,
+                    -6.562000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS Medika Dramaga",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.738500,
+                    -6.565800
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS Melania",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.805500,
+                    -6.611100
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS Vania",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.805000,
+                    -6.608000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS Salak",
+                "kategori": "Rumah Sakit Militer",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.794600,
+                    -6.587800
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RSUD Cibinong",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.837500,
+                    -6.481200
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS Sentra Medika Cibinong",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.848000,
+                    -6.471500
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS FMC (Family Medical Center)",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.814300,
+                    -6.536700
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS Mulia Pajajaran",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.807800,
+                    -6.584100
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "Bogor Medical Center (BMC)",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.810500,
+                    -6.605300
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS Marzoeki Mahdi",
+                "kategori": "Rumah Sakit Jiwa/Umum",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.779500,
+                    -6.582200
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS Islam Bogor",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.797200,
+                    -6.568100
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RSPG Cisarua",
+                "kategori": "Rumah Sakit Paru",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.940000,
+                    -6.674000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RSUD Ciawi",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.845000,
+                    -6.653000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RSUD Leuwiliang",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.626000,
+                    -6.577000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RSUD Cileungsi",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.975000,
+                    -6.402000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS Hermina Mekarsari",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.970000,
+                    -6.398000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS Mary Cileungsi",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.965000,
+                    -6.391000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS MH Thamrin Cileungsi",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.980000,
+                    -6.410000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS Permata Jonggol",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    107.030000,
+                    -6.460000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS Annisa Citeureup",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.875000,
+                    -6.505000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS Bina Husada Cibinong",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.865000,
+                    -6.485000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS Trimitra Cibinong",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.845000,
+                    -6.495000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS Citama Bojong Gede",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.790000,
+                    -6.490000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS Harapan Sehati",
+                "kategori": "Rumah Sakit Umum",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.800000,
+                    -6.500000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RSIA Nuraida",
+                "kategori": "Rumah Sakit Ibu dan Anak",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.815000,
+                    -6.580000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RSIA Bunda Suryatni",
+                "kategori": "Rumah Sakit Ibu dan Anak",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.795000,
+                    -6.555000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RSIA Sawojajar",
+                "kategori": "Rumah Sakit Ibu dan Anak",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.790000,
+                    -6.575000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS dr. Hasan Toto (Lanud Atang Sendjaja)",
+                "kategori": "Rumah Sakit Militer",
+                "wilayah": "Kabupaten Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.755000,
+                    -6.535000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_faskes": "RS Bhayangkara Polresta Bogor",
+                "kategori": "Rumah Sakit Polri",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.795000,
+                    -6.595000
+                ]
+            }
+        }
+    ]
+}

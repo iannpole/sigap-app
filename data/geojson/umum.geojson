@@ -1,0 +1,885 @@
+{
+    "type": "FeatureCollection",
+    "name": "taman_kota_bogor",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        }
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_taman": "Kebun Raya Bogor",
+                "kategori": "Kebun Raya / Hutan Kota",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.797600,
+                    -6.597600
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_taman": "Taman Sempur",
+                "kategori": "Taman Kota / Olahraga",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.797200,
+                    -6.589100
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_taman": "Taman Kencana",
+                "kategori": "Taman Kota",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.801600,
+                    -6.588800
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_taman": "Taman Heulang",
+                "kategori": "Taman Kota",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.797800,
+                    -6.574600
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_taman": "Taman Ekspresi",
+                "kategori": "Taman Tematik",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.797200,
+                    -6.588500
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_taman": "Taman Corat Coret",
+                "kategori": "Taman Tematik",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.809100,
+                    -6.576500
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_taman": "Taman Peranginan",
+                "kategori": "Taman Kota",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.795100,
+                    -6.591200
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_taman": "Taman Malabar",
+                "kategori": "Taman Kota",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.804100,
+                    -6.593600
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_taman": "Taman Kaulinan",
+                "kategori": "Taman Tematik (Anak)",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.798100,
+                    -6.588000
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_taman": "Taman Skateboard",
+                "kategori": "Taman Olahraga Ekstrem",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.798500,
+                    -6.589800
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_taman": "Taman Kupu-Kupu",
+                "kategori": "Taman Edukasi",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.793500,
+                    -6.581200
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "nama_taman": "Taman Perumnas Bantarjati",
+                "kategori": "Taman Perumahan",
+                "wilayah": "Kota Bogor"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.808500,
+                    -6.570200
+                ]
+            }
+        },
+        {
+            "type": "FeatureCollection",
+            "name": "gor_badminton_bogor",
+            "crs": {
+                "type": "name",
+                "properties": {
+                    "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+                }
+            },
+            "features": [
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_gor": "GOR Pajajaran",
+                        "kategori": "Sports Center Utama",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.797200,
+                            -6.578600
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_gor": "GOR Laga Tangkas Pakansari",
+                        "kategori": "Sports Center Besar",
+                        "wilayah": "Kabupaten Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.840600,
+                            -6.493900
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_gor": "GOR Sahabat Cimanggu",
+                        "kategori": "GOR Bulutangkis",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.784500,
+                            -6.569400
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_gor": "GOR Budi Agung",
+                        "kategori": "GOR Bulutangkis",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.793200,
+                            -6.563000
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_gor": "GOR VIP (Villa Indah Pajajaran)",
+                        "kategori": "GOR Bulutangkis",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.808000,
+                            -6.578000
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_gor": "GOR Kayumanis",
+                        "kategori": "GOR Bulutangkis",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.777300,
+                            -6.545200
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_gor": "GOR Inhutani",
+                        "kategori": "GOR Bulutangkis",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.791500,
+                            -6.582100
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_gor": "GOR Tirtania",
+                        "kategori": "GOR Bulutangkis",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.805500,
+                            -6.634100
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_gor": "GOR Badminton Ciomas",
+                        "kategori": "GOR Bulutangkis",
+                        "wilayah": "Kabupaten Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.762000,
+                            -6.605000
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_gor": "GOR Ksatria Arena",
+                        "kategori": "GOR Bulutangkis",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.790500,
+                            -6.572100
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_gor": "GOR Puspa",
+                        "kategori": "GOR Bulutangkis",
+                        "wilayah": "Kabupaten Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.751000,
+                            -6.551200
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_gor": "GOR Badminton Bukit Asri",
+                        "kategori": "GOR Bulutangkis",
+                        "wilayah": "Kabupaten Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.765100,
+                            -6.611000
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "type": "FeatureCollection",
+            "name": "lapangan_basket_bogor",
+            "crs": {
+                "type": "name",
+                "properties": {
+                    "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+                }
+            },
+            "features": [
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "The Bucketlist Indonesia",
+                        "kategori": "Indoor Premium / Museum Basket",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.814500,
+                            -6.572800
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "FullBelly Sports (OCBD)",
+                        "kategori": "Indoor Premium",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.818200,
+                            -6.553400
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "GOR Pajajaran (Indoor & Outdoor)",
+                        "kategori": "Sports Center Utama",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.797200,
+                            -6.578600
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Lapangan Basket Taman Sempur",
+                        "kategori": "Outdoor / Taman Kota",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.797500,
+                            -6.589200
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Lapangan Basket Taman Heulang",
+                        "kategori": "Outdoor / Taman Kota",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.797900,
+                            -6.574800
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "GOR Laga Tangkas Pakansari",
+                        "kategori": "Indoor / Sports Center Besar",
+                        "wilayah": "Kabupaten Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.840600,
+                            -6.493900
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Lapangan Basket Taman Corat Coret",
+                        "kategori": "Outdoor / Taman Tematik",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.809200,
+                            -6.576600
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Lapangan Basket GOR Budi Agung",
+                        "kategori": "Semi-Indoor",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.793200,
+                            -6.563000
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Lapangan Basket Sektor Yasmin",
+                        "kategori": "Outdoor / Perumahan",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.772500,
+                            -6.561500
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Hoops Arena Bogor",
+                        "kategori": "Indoor Basket",
+                        "wilayah": "Kabupaten Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.832100,
+                            -6.635000
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "type": "FeatureCollection",
+            "name": "lapangan_futsal_bogor",
+            "crs": {
+                "type": "name",
+                "properties": {
+                    "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+                }
+            },
+            "features": [
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Galaxy Futsal Tajur",
+                        "kategori": "Indoor Futsal",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.823500,
+                            -6.634100
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "GOR Pajajaran (Futsal Area)",
+                        "kategori": "Sports Center Utama",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.797200,
+                            -6.578600
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Cimanggu Futsal Center",
+                        "kategori": "Indoor Futsal",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.784500,
+                            -6.559000
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Yasmin Futsal",
+                        "kategori": "Indoor Futsal",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.772500,
+                            -6.561500
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Futsal BNR (Bogor Nirwana Residence)",
+                        "kategori": "Indoor Futsal",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.794000,
+                            -6.627500
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Futsal 16 Cibinong",
+                        "kategori": "Indoor Futsal",
+                        "wilayah": "Kabupaten Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.845000,
+                            -6.475000
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Lumbung Futsal Ciawi",
+                        "kategori": "Indoor Futsal",
+                        "wilayah": "Kabupaten Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.835000,
+                            -6.645000
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Bantarjati Futsal",
+                        "kategori": "Indoor Futsal",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.809000,
+                            -6.571000
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Puspa Futsal",
+                        "kategori": "Indoor Futsal",
+                        "wilayah": "Kabupaten Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.751000,
+                            -6.551200
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Dramaga Futsal",
+                        "kategori": "Indoor Futsal",
+                        "wilayah": "Kabupaten Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.732000,
+                            -6.574200
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Laga Tangkas Pakansari",
+                        "kategori": "Indoor / Sports Center Besar",
+                        "wilayah": "Kabupaten Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.840600,
+                            -6.493900
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "type": "FeatureCollection",
+            "name": "lapangan_sepakbola_bogor",
+            "crs": {
+                "type": "name",
+                "properties": {
+                    "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+                }
+            },
+            "features": [
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Stadion Pakansari",
+                        "kategori": "Stadion Internasional / Liga 1",
+                        "wilayah": "Kabupaten Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.832500,
+                            -6.475100
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Stadion Pajajaran",
+                        "kategori": "Stadion Utama Kota",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.797200,
+                            -6.578600
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Stadion Mini Cibinong",
+                        "kategori": "Stadion Madya",
+                        "wilayah": "Kabupaten Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.848500,
+                            -6.472000
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Lapangan Sempur",
+                        "kategori": "Lapangan Terbuka / Taman Kota",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.797200,
+                            -6.589100
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "ASIOP Training Ground (Sentul)",
+                        "kategori": "Pusat Latihan Sepak Bola",
+                        "wilayah": "Kabupaten Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.868100,
+                            -6.565200
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Lapangan Kresna Bantarjati",
+                        "kategori": "Lapangan Terbuka / Warga",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.808200,
+                            -6.575300
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Stadion IPB Dramaga",
+                        "kategori": "Stadion Kampus",
+                        "wilayah": "Kabupaten Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.731500,
+                            -6.559000
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Lapangan Sakura Ciomas",
+                        "kategori": "Lapangan Terbuka / SSB",
+                        "wilayah": "Kabupaten Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.762100,
+                            -6.603500
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Lapangan Pusdikzi Lawanggintung",
+                        "kategori": "Lapangan Militer / Umum",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.805100,
+                            -6.618500
+                        ]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "nama_lokasi": "Lapangan Heulang",
+                        "kategori": "Lapangan Terbuka / Taman",
+                        "wilayah": "Kota Bogor"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            106.797800,
+                            -6.574600
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}
