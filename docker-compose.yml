@@ -1,16 +1,41 @@
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sigap-app
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-3000}:3000"
+    expose:
+      - "3000"
+    environment:
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+      # Optional: leave unset to view the landing page without database-backed API results.
+      DATABASE_URL: ${DATABASE_URL:-postgresql://sigap:sigap-local-dev@postgres:5432/sigap}
+      JWT_SECRET: ${JWT_SECRET:-docker-preview-only-change-me}
+    depends_on:
+      postgres:
+        condition: service_healthy
+
   postgres:
     image: postgis/postgis:16-3.4-alpine
     container_name: sigap-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USER:-sigap}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-sigap-local-dev}
+      POSTGRES_DB: ${DB_DATABASE:-sigap}
     ports:
-      - "${DB_PORT}:5432"
+      - "${DB_PORT:-5432}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-sigap} -d ${DB_DATABASE:-sigap}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
 volumes:
   pgdata:

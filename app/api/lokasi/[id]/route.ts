@@ -1,9 +1,9 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { getDataSource } from "@/lib/data-source";
-import { getAuthAdmin } from "@/lib/auth";
+import { authorizeWrite } from "@/lib/auth";
 import { LokasiLayanan } from "@/entities";
 import { toFeature } from "@/lib/geojson";
-import { ok, fail, readJson, intId, unauthorized, serverError } from "@/lib/api";
+import { ok, fail, readJson, intId, serverError } from "@/lib/api";
 import { parseLokasiBody, subKategoriExists, loadLokasiProps, pointSql } from "@/lib/lokasi-input";
 
 export const runtime = "nodejs";
@@ -13,7 +13,8 @@ type Ctx = { params: Promise<{ id: string }> };
 
 export async function PUT(req: Request, ctx: Ctx) {
   try {
-    if (!(await getAuthAdmin(req))) return unauthorized();
+    const auth = await authorizeWrite(req);
+    if ("denied" in auth) return auth.denied;
 
     const id = intId((await ctx.params).id);
     if (id === null) return fail("id harus integer valid", 400);
@@ -45,7 +46,8 @@ export async function PUT(req: Request, ctx: Ctx) {
 
 export async function DELETE(req: Request, ctx: Ctx) {
   try {
-    if (!(await getAuthAdmin(req))) return unauthorized();
+    const auth = await authorizeWrite(req);
+    if ("denied" in auth) return auth.denied;
 
     const id = intId((await ctx.params).id);
     if (id === null) return fail("id harus integer valid", 400);

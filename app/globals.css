@@ -1,15 +1,61 @@
 @import "tailwindcss";
 @config "../tailwind.config.ts";
 
+:root {
+  --latar: #ffffff;
+  --tinta: #1b2433;
+  --panel: #ffffff;
+  --mist: #f3f4f6;
+  --abu: #3f4945;
+}
+
+.dark {
+  --latar: #141b26;
+  --tinta: #f1efe6;
+  --panel: #1d2636;
+  --mist: #243047;
+  --abu: #b6bfcb;
+}
+
 html,
 body {
-  background: #f7faf9;
-  color: #0f1f26;
+  background: var(--latar);
+  color: var(--tinta);
+}
+
+a[href],
+button,
+summary,
+select,
+label[for],
+label:has(> input[type="checkbox"]),
+label:has(> input[type="radio"]),
+[role="button"],
+[role="tab"],
+[role="switch"] {
+  cursor: pointer;
+}
+
+:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+/* Respect reduced motion globally for decorative animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .leaflet-container {
   font-family: inherit;
-  background: #eaf4ef;
+  background: #eff4ff;
 }
 
 .sehat-popup .leaflet-popup-content-wrapper {
@@ -22,8 +68,60 @@ body {
   margin: 16px 18px;
 }
 
+.sehat-popup .leaflet-popup-content-wrapper,
+.sehat-popup .leaflet-popup-tip {
+  background: var(--panel);
+  color: var(--tinta);
+}
+
 .sehat-popup .leaflet-popup-tip {
   box-shadow: none;
+}
+
+.sehat-popup .text-grey {
+  color: var(--abu);
+}
+
+.leaflet-container {
+  background: var(--mist);
+}
+
+.hero-scrim {
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 34%, transparent 70%);
+}
+
+@media (min-width: 768px) {
+  .hero-scrim {
+    background: linear-gradient(90deg, #ffffff 0%, #ffffff 30%, transparent 62%);
+  }
+}
+
+.dark .hero-scrim {
+  background: linear-gradient(180deg, #141b26 0%, #141b26 34%, transparent 70%);
+}
+
+@media (min-width: 768px) {
+  .dark .hero-scrim {
+    background: linear-gradient(90deg, #141b26 0%, #141b26 30%, transparent 62%);
+  }
+}
+
+/* Biru #1F5FD1 tidak cukup kontras di atas latar gelap. */
+.dark .hero-judul-biru {
+  color: #6e9bff;
+}
+
+.dark .leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.85) contrast(0.95);
+}
+
+.dark .leaflet-control-attribution {
+  background: rgba(29, 38, 54, 0.85);
+  color: #b6bfcb;
+}
+
+.dark .leaflet-control-attribution a {
+  color: #d6dde8;
 }
 
 .pin {
@@ -53,9 +151,9 @@ body {
   width: 18px;
   height: 18px;
   border-radius: 999px;
-  background: #0b6b63;
+  background: #005144;
   border: 3px solid #fff;
-  box-shadow: 0 0 0 8px rgba(11, 107, 99, 0.22);
+  box-shadow: 0 0 0 8px rgba(0, 81, 68, 0.22);
 }
 
 .no-scrollbar::-webkit-scrollbar {

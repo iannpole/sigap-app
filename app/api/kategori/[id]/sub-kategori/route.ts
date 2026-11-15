@@ -1,14 +1,15 @@
 import { getDataSource } from "@/lib/data-source";
-import { getAuthAdmin } from "@/lib/auth";
+import { authorizeWrite } from "@/lib/auth";
 import { Kategori, SubKategori } from "@/entities";
-import { ok, fail, readJson, intId, isPgUnique, unauthorized, serverError } from "@/lib/api";
+import { ok, fail, readJson, intId, isPgUnique, serverError } from "@/lib/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(req: Request, ctx: { params: Promise<{ id: string }> }) {
   try {
-    if (!(await getAuthAdmin(req))) return unauthorized();
+    const auth = await authorizeWrite(req);
+    if ("denied" in auth) return auth.denied;
 
     const { id: rawId } = await ctx.params;
     const kategoriId = intId(rawId);

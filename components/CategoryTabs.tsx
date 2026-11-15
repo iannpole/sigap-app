@@ -1,90 +1,72 @@
 "use client";
 
-import { LayoutGrid } from "lucide-react";
-import { ALL_SUBS, GROUPS, SUB_META } from "@/lib/meta";
-import type { Filter, Group, Sub } from "@/lib/types";
-
-interface Counts {
-  all: number;
-  kesehatan: number;
-  rekreasi: number;
-  subs: Record<string, number>;
-}
+import type { Counts, Filter, Kategori } from "@/lib/types";
 
 interface Props {
+  kategori: Kategori[];
+  colors: Record<number, string>;
   filter: Filter;
   counts: Counts;
-  onGroup: (g: "all" | Group) => void;
-  onSub: (s: "all" | Sub) => void;
+  onKategori: (id: number | null) => void;
+  onSub: (id: number | null) => void;
 }
 
-export default function CategoryTabs({ filter, counts, onGroup, onSub }: Props) {
-  const tabs = [
-    { id: "all" as const, label: "Semua (Aktif)", icon: LayoutGrid, count: counts.all, color: "#0f1f26" },
-    { id: "kesehatan" as const, label: GROUPS.kesehatan.label, icon: GROUPS.kesehatan.icon, count: counts.kesehatan, color: GROUPS.kesehatan.color },
-    { id: "rekreasi" as const, label: GROUPS.rekreasi.label, icon: GROUPS.rekreasi.icon, count: counts.rekreasi, color: GROUPS.rekreasi.color },
-  ];
+const chip = (on: boolean) =>
+  `flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition ${
+    on ? "bg-brand text-white" : "bg-[var(--panel)] text-[var(--tinta)] hover:bg-[var(--mist)]"
+  }`;
 
-  const subs = filter.group === "all" ? ALL_SUBS : GROUPS[filter.group].subs;
-  const activeSoft = filter.group === "all" ? "#d8efe6" : GROUPS[filter.group].soft;
+export default function CategoryTabs({ kategori, colors, filter, counts, onKategori, onSub }: Props) {
+  const active = kategori.find((k) => k.id === filter.kategoriId) ?? null;
+  const subs = active ? active.subKategori : kategori.flatMap((k) => k.subKategori);
 
   return (
-    <section className="space-y-4">
-      <div className="no-scrollbar -mx-4 flex gap-3 overflow-x-auto px-4 md:mx-0 md:grid md:grid-cols-3 md:px-0">
-        {tabs.map((t) => {
-          const active = filter.group === t.id;
-          const Icon = t.icon;
-          return (
-            <button
-              key={t.id}
-              onClick={() => onGroup(t.id)}
-              className={`flex shrink-0 items-center justify-center gap-3 rounded-full px-6 py-3.5 text-[15px] font-extrabold shadow-card transition ${
-                active ? "bg-ink text-white" : "bg-white text-ink hover:bg-mist"
-              }`}
-            >
-              <Icon size={18} style={{ color: active ? "#fff" : t.color }} />
-              {t.label}
-              <span
-                className={`rounded-full px-2 py-0.5 text-xs font-bold ${
-                  active ? "bg-white/20 text-white" : "bg-mist text-slate-600"
-                }`}
-              >
-                {t.count}
-              </span>
-            </button>
-          );
-        })}
+    <section className="space-y-4" aria-label="Kategori layanan">
+      <div className="no-scrollbar -mx-4 flex gap-3 overflow-x-auto px-4 md:mx-0 md:flex-wrap md:px-0">
+        <button type="button" aria-pressed={filter.kategoriId === null} onClick={() => onKategori(null)} className={chip(filter.kategoriId === null)}>
+          Semua
+          <span className="text-xs opacity-80">{counts.all}</span>
+        </button>
+        {kategori.map((k) => (
+          <button
+            key={k.id}
+            type="button"
+            aria-pressed={filter.kategoriId === k.id}
+            onClick={() => onKategori(k.id)}
+            className={chip(filter.kategoriId === k.id)}
+          >
+            <span className="h-2.5 w-2.5 rounded-full" style={{ background: colors[k.id] }} aria-hidden="true" />
+            {k.namaKategori}
+            <span className="text-xs opacity-80">{counts.kategori[k.id] ?? 0}</span>
+          </button>
+        ))}
       </div>
 
-      <div className="no-scrollbar -mx-4 flex items-center gap-2 overflow-x-auto px-4 md:mx-0 md:px-0">
-        <span className="shrink-0 pr-2 text-xs font-extrabold">Subkategori:</span>
-        <button
-          onClick={() => onSub("all")}
-          className="shrink-0 rounded-lg px-5 py-2.5 text-xs font-extrabold shadow-card"
-          style={{
-            background: filter.sub === "all" ? activeSoft : "#fff",
-            color: "#0f1f26",
-          }}
-        >
-          Semua
-        </button>
-        {subs.map((s) => {
-          const Icon = SUB_META[s].icon;
-          const active = filter.sub === s;
-          return (
+      {subs.length > 0 && (
+        <div className="no-scrollbar -mx-4 flex items-center gap-2 overflow-x-auto px-4 md:mx-0 md:flex-wrap md:px-0">
+          <span className="shrink-0 pr-2 text-xs font-bold text-[var(--abu)]">Subkategori</span>
+          <button
+            type="button"
+            aria-pressed={filter.subKategoriId === null}
+            onClick={() => onSub(null)}
+            className={`shrink-0 rounded-lg px-4 py-2 text-xs font-bold ${filter.subKategoriId === null ? "bg-mint text-ink" : "bg-[var(--panel)] text-[var(--tinta)]"}`}
+          >
+            Semua
+          </button>
+          {subs.map((s) => (
             <button
-              key={s}
-              onClick={() => onSub(s)}
-              className="flex shrink-0 items-center gap-2 rounded-lg px-4 py-2.5 text-xs font-extrabold shadow-card transition hover:brightness-95"
-              style={{ background: active ? GROUPS[SUB_META[s].group].soft : "#fff" }}
+              key={s.id}
+              type="button"
+              aria-pressed={filter.subKategoriId === s.id}
+              onClick={() => onSub(s.id)}
+              className={`flex shrink-0 items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold ${filter.subKategoriId === s.id ? "bg-mint text-ink" : "bg-[var(--panel)] text-[var(--tinta)]"}`}
             >
-              <Icon size={14} style={{ color: GROUPS[SUB_META[s].group].color }} />
-              {s}
-              <span className="text-[11px] font-bold text-slate-500">{counts.subs[s] ?? 0}</span>
+              {s.namaSubKategori}
+              <span className="text-[11px] font-semibold text-[var(--abu)]">{counts.sub[s.id] ?? 0}</span>
             </button>
-          );
-        })}
-      </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

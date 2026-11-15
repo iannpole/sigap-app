@@ -27,8 +27,8 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Environment files
-.env*.local
-.env
+.env*
+env.*
 !.env.example
 
 # Vercel
@@ -53,5 +53,32 @@ Thumbs.db
 *.sw?
 
 # Requested project ignores
-/.agents
+/.agents/
 /docs
+
+# AI agent, plan, and editor tool work files
+/.opencode/
+/.claude/
+/.cursor/
+/.windsurf/
+/.continue/
+/.codex/
+/.gemini/
+/.agents/
+/ai-work/
+/anti-slop/
+/plan/
+/plans/
+*.prompt.md
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+opencode.json
+skills-lock.json
+
+# Local planning and design notes
+*.md
+!README.md
+
+# Windows reserved device name created by a stray redirect
+nul

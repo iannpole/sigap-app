@@ -1,93 +1,71 @@
 "use client";
 
-import { useState } from "react";
-import { Menu, MapPinned, Siren, User, X } from "lucide-react";
-import { useHello } from "./Toast";
-
-const NAV = ["Beranda", "Peta", "Layanan", "Tentang"];
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Header() {
-  const hello = useHello();
-  const [active, setActive] = useState("Beranda");
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const go = (label: string) => {
-    setActive(label);
-    setOpen(false);
-    hello();
-  };
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const dasar = scrolled
+    ? "border-b border-black/5 bg-[var(--panel)] shadow-soft"
+    : "border-b border-transparent bg-transparent";
 
   return (
-    <header className="sticky top-0 z-[1500] border-b border-black/5 bg-white/90 backdrop-blur">
+    <header className={`fixed inset-x-0 top-0 z-[1500] transition-colors duration-200 ${dasar}`}>
       <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 py-3 md:px-8">
-        <button onClick={hello} className="flex items-center gap-3 text-left">
-          <span className="grid h-10 w-10 place-items-center rounded-xl border border-black/5 bg-mist text-brand shadow-card">
-            <MapPinned size={20} />
-          </span>
-          <span className="leading-tight">
-            <span className="block text-[15px] font-extrabold tracking-tight">SEHAT &amp; REFRESH TANGSEL</span>
-            <span className="hidden text-[11px] text-slate-600 sm:block">Sistem Informasi Geografis Kesehatan &amp; Rekreasi</span>
-          </span>
-        </button>
+        <Link href="/" className="flex items-center text-left" aria-label="SIGAP Bogor, beranda">
+          <Image
+            src="/logo/sigap-logo.png"
+            alt="SIGAP Bogor"
+            width={240}
+            height={120}
+            priority
+            className="h-14 w-auto"
+          />
+        </Link>
 
-        <nav className="hidden items-center gap-2 md:flex">
-          {NAV.map((n) => (
-            <button
-              key={n}
-              onClick={() => go(n)}
-              className={`rounded-xl px-5 py-2.5 text-sm font-semibold transition ${
-                active === n ? "bg-ink text-white" : "text-slate-700 hover:bg-mist"
-              }`}
-            >
-              {n}
-            </button>
-          ))}
+        <nav className="hidden items-center gap-2 md:flex" aria-label="Navigasi utama">
+          <a href="#peta-hasil" className="rounded-xl px-5 py-2.5 text-sm font-semibold text-[var(--tinta)] hover:bg-[var(--mist)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F5FD1]">
+            Peta layanan
+          </a>
+          <Link href="/admin" className="rounded-xl bg-[#1F5FD1] px-5 py-2.5 text-sm font-bold text-white hover:bg-[#1B7F37] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1B2433]">
+            Portal admin
+          </Link>
         </nav>
 
-        <div className="flex items-center gap-2 md:gap-4">
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
           <button
-            onClick={hello}
-            className="flex items-center gap-2 rounded-xl bg-alert px-3 py-2.5 text-xs font-extrabold tracking-wide text-white shadow-card transition hover:brightness-110 md:px-4 md:text-sm"
-          >
-            <Siren size={16} />
-            DARURAT 119
-          </button>
-          <button onClick={hello} className="hidden text-sm font-bold text-brand lg:block">
-            Portal Admin
-          </button>
-          <button
-            onClick={hello}
-            aria-label="Profil"
-            className="grid h-10 w-10 place-items-center rounded-full bg-brand text-white shadow-card"
-          >
-            <User size={18} />
-          </button>
-          <button
+            type="button"
             onClick={() => setOpen((v) => !v)}
-            aria-label="Menu"
-            className="grid h-10 w-10 place-items-center rounded-xl border border-black/10 md:hidden"
+            aria-label={open ? "Tutup menu" : "Buka menu"}
+            aria-expanded={open}
+            className="grid h-10 w-10 place-items-center rounded-xl border border-black/10 bg-[var(--panel)] text-[var(--tinta)] md:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F5FD1]"
           >
-            {open ? <X size={18} /> : <Menu size={18} />}
+            {open ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
           </button>
         </div>
       </div>
 
       {open && (
-        <nav className="grid gap-1 border-t border-black/5 bg-white px-4 py-3 md:hidden">
-          {NAV.map((n) => (
-            <button
-              key={n}
-              onClick={() => go(n)}
-              className={`rounded-xl px-4 py-3 text-left text-sm font-semibold ${
-                active === n ? "bg-ink text-white" : "text-slate-700"
-              }`}
-            >
-              {n}
-            </button>
-          ))}
-          <button onClick={() => go("Portal Admin")} className="rounded-xl px-4 py-3 text-left text-sm font-bold text-brand">
-            Portal Admin
-          </button>
+        <nav className="grid gap-1 border-t border-black/5 bg-[var(--panel)] px-4 py-3 md:hidden" aria-label="Navigasi seluler">
+          <a href="#peta-hasil" onClick={() => setOpen(false)} className="rounded-xl px-4 py-3 text-sm font-semibold text-[var(--tinta)]">
+            Peta layanan
+          </a>
+          <Link href="/admin" onClick={() => setOpen(false)} className="rounded-xl px-4 py-3 text-sm font-bold text-[#1F5FD1]">
+            Portal admin
+          </Link>
         </nav>
       )}
     </header>

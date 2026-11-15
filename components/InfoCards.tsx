@@ -24,7 +24,7 @@ const CARDS = [
   },
   {
     icon: Route,
-    bg: "bg-mist",
+    bg: "bg-[var(--mist)]",
     fg: "text-brand",
     title: "Rute Efisien",
     text: "Estimasi waktu tempuh menuju fasilitas terdekat dengan mempertimbangkan kondisi lalu lintas.",
@@ -50,7 +50,7 @@ export default function InfoCards() {
       {CARDS.map((c) => {
         const Icon = c.icon;
         return (
-          <article key={c.title} className="flex flex-col rounded-3xl bg-white p-6 shadow-card">
+          <article key={c.title} className="flex flex-col rounded-3xl bg-[var(--panel)] p-6 text-[var(--tinta)] shadow-card">
             <span className={`mb-5 grid h-11 w-11 place-items-center rounded-xl ${c.bg} ${c.fg}`}>
               <Icon size={20} />
             </span>

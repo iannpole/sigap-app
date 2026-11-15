@@ -1,37 +1,41 @@
-import type { FeatureCollection, Point } from "geojson";
-
-export type Group = "kesehatan" | "rekreasi";
-
-export type Sub =
-  | "Klinik"
-  | "Puskesmas"
-  | "Rumah Sakit"
-  | "Apotek"
-  | "Taman"
-  | "Ruang Publik"
-  | "Area Rekreasi"
-  | "Fasilitas Olahraga";
-
-export interface FacilityProps {
-  id: string;
-  name: string;
-  sub: Sub;
-  description: string;
-  address: string;
-  open: boolean;
-  hours: string;
+export interface SubKategori {
+  id: number;
+  namaSubKategori: string;
 }
 
-export type FacilityCollection = FeatureCollection<Point, FacilityProps>;
+export interface Kategori {
+  id: number;
+  namaKategori: string;
+  subKategori: SubKategori[];
+}
 
-export interface Facility extends FacilityProps {
-  group: Group;
+export interface Lokasi {
+  id: number;
+  nama: string;
+  kategoriId: number;
+  kategori: string;
+  subKategoriId: number;
+  sub: string;
+  alamat: string | null;
+  wilayah: string;
+  noKontak: string | null;
+  jamOperasional: string | null;
+  fotoUrl: string | null;
   lat: number;
   lng: number;
+}
+
+export interface LokasiView extends Lokasi {
   distance: number;
 }
 
 export interface Filter {
-  group: "all" | Group;
-  sub: "all" | Sub;
+  kategoriId: number | null;
+  subKategoriId: number | null;
+}
+
+export interface Counts {
+  all: number;
+  kategori: Record<number, number>;
+  sub: Record<number, number>;
 }

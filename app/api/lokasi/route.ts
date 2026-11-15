@@ -1,9 +1,9 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { getDataSource } from "@/lib/data-source";
-import { getAuthAdmin } from "@/lib/auth";
+import { authorizeWrite } from "@/lib/auth";
 import { LokasiLayanan } from "@/entities";
 import { toFeature } from "@/lib/geojson";
-import { ok, fail, readJson, unauthorized, serverError } from "@/lib/api";
+import { ok, fail, readJson, serverError } from "@/lib/api";
 import { parseLokasiBody, subKategoriExists, loadLokasiProps, pointSql } from "@/lib/lokasi-input";
 
 export const runtime = "nodejs";
@@ -11,8 +11,9 @@ export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
   try {
-    const admin = await getAuthAdmin(req);
-    if (!admin) return unauthorized();
+    const auth = await authorizeWrite(req);
+    if ("denied" in auth) return auth.denied;
+    const admin = auth.admin;
 
     const body = await readJson(req);
     if (!body) return fail("Body harus berupa JSON object", 400);

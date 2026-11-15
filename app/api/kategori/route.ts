@@ -1,15 +1,16 @@
 import { NextResponse } from "next/server";
 import { getDataSource } from "@/lib/data-source";
-import { getAuthAdmin } from "@/lib/auth";
+import { authorizeWrite } from "@/lib/auth";
 import { Kategori } from "@/entities";
-import { ok, fail, readJson, isPgUnique, unauthorized, serverError } from "@/lib/api";
+import { ok, fail, readJson, isPgUnique, serverError } from "@/lib/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
   try {
-    if (!(await getAuthAdmin(req))) return unauthorized();
+    const auth = await authorizeWrite(req);
+    if ("denied" in auth) return auth.denied;
 
     const body = await readJson(req);
     const nama = typeof body?.namaKategori === "string" ? body.namaKategori.trim() : "";
