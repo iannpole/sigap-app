@@ -1,5 +1,6 @@
 "use client";
 
+import IkonBrick from "@/components/beranda/IkonBrick";
 import type { Counts, Filter, Kategori } from "@/lib/types";
 
 interface Props {
@@ -12,13 +13,18 @@ interface Props {
 }
 
 const chip = (on: boolean) =>
-  `flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition ${
+  `flex min-h-11 shrink-0 items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-bold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F5FD1] ${
     on ? "bg-brand text-white" : "bg-[var(--panel)] text-[var(--tinta)] hover:bg-[var(--mist)]"
   }`;
 
+const ikonKategori = (nama: string) => {
+  const key = nama.toLowerCase();
+  return ["kesehatan", "keamanan", "olahraga", "hiburan"].includes(key) ? key : "kategori";
+};
+
 export default function CategoryTabs({ kategori, colors, filter, counts, onKategori, onSub }: Props) {
   const active = kategori.find((k) => k.id === filter.kategoriId) ?? null;
-  const subs = active ? active.subKategori : kategori.flatMap((k) => k.subKategori);
+  const subs = active?.subKategori.filter((s) => (counts.sub[s.id] ?? 0) > 0) ?? [];
 
   return (
     <section className="space-y-4" aria-label="Kategori layanan">
@@ -34,8 +40,11 @@ export default function CategoryTabs({ kategori, colors, filter, counts, onKateg
             aria-pressed={filter.kategoriId === k.id}
             onClick={() => onKategori(k.id)}
             className={chip(filter.kategoriId === k.id)}
+            style={filter.kategoriId === k.id ? { backgroundColor: colors[k.id] } : undefined}
           >
-            <span className="h-2.5 w-2.5 rounded-full" style={{ background: colors[k.id] }} aria-hidden="true" />
+            <span className="grid h-6 w-6 place-items-center rounded border border-current" style={{ color: filter.kategoriId === k.id ? "currentColor" : colors[k.id] }} aria-hidden="true">
+              <IkonBrick ikon={ikonKategori(k.namaKategori)} size={15} />
+            </span>
             {k.namaKategori}
             <span className="text-xs opacity-80">{counts.kategori[k.id] ?? 0}</span>
           </button>
@@ -49,7 +58,7 @@ export default function CategoryTabs({ kategori, colors, filter, counts, onKateg
             type="button"
             aria-pressed={filter.subKategoriId === null}
             onClick={() => onSub(null)}
-            className={`shrink-0 rounded-lg px-4 py-2 text-xs font-bold ${filter.subKategoriId === null ? "bg-mint text-ink" : "bg-[var(--panel)] text-[var(--tinta)]"}`}
+            className={`min-h-11 shrink-0 rounded-lg px-4 py-2 text-xs font-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F5FD1] ${filter.subKategoriId === null ? "bg-mint text-ink" : "bg-[var(--panel)] text-[var(--tinta)]"}`}
           >
             Semua
           </button>
@@ -59,7 +68,7 @@ export default function CategoryTabs({ kategori, colors, filter, counts, onKateg
               type="button"
               aria-pressed={filter.subKategoriId === s.id}
               onClick={() => onSub(s.id)}
-              className={`flex shrink-0 items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold ${filter.subKategoriId === s.id ? "bg-mint text-ink" : "bg-[var(--panel)] text-[var(--tinta)]"}`}
+              className={`flex min-h-11 shrink-0 items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F5FD1] ${filter.subKategoriId === s.id ? "bg-mint text-ink" : "bg-[var(--panel)] text-[var(--tinta)]"}`}
             >
               {s.namaSubKategori}
               <span className="text-[11px] font-semibold text-[var(--abu)]">{counts.sub[s.id] ?? 0}</span>

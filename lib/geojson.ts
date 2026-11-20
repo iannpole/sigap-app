@@ -17,6 +17,8 @@ export function toFeature(
     noKontak: lokasi.noKontak,
     jamOperasional: lokasi.jamOperasional,
     fotoUrl: lokasi.fotoUrl,
+    deskripsi: lokasi.deskripsi,
+    detailFasilitas: lokasi.detailFasilitas,
   };
   if (jarak !== undefined) properties.jarak = jarak;
 

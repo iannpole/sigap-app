@@ -21,17 +21,17 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
     if (nama.length > 50) return fail("namaSubKategori maksimal 50 karakter", 400);
 
     const ds = await getDataSource();
-    if (!(await ds.getRepository(Kategori).existsBy({ id: kategoriId }))) {
+    if (!(await ds.getRepository<Kategori>("Kategori").existsBy({ id: kategoriId }))) {
       return fail("Kategori tidak ditemukan", 404);
     }
-    const repo = ds.getRepository(SubKategori);
+    const repo = ds.getRepository<SubKategori>("SubKategori");
     if (await repo.existsBy({ kategoriId, namaSubKategori: nama })) {
       return fail("Sub-kategori sudah ada pada kategori ini", 409);
     }
 
     try {
       const saved = await repo.save(repo.create({ kategoriId, namaSubKategori: nama }));
-      return ok({ id: saved.id, namaSubKategori: saved.namaSubKategori, kategoriId }, "", 201);
+      return ok({ id: saved.id, namaSubKategori: saved.namaSubKategori, kategoriId, jumlahLokasi: 0 }, "", 201);
     } catch (err) {
       if (isPgUnique(err)) return fail("Sub-kategori sudah ada pada kategori ini", 409);
       throw err;

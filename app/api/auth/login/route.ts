@@ -24,7 +24,7 @@ export async function POST(req: Request) {
   try {
     const ds = await getDataSource();
     const admin = await ds
-      .getRepository(Admin)
+      .getRepository<Admin>("Admin")
       .createQueryBuilder("a")
       .addSelect("a.passwordHash")
       .where("a.username = :username", { username })

@@ -140,6 +140,7 @@ async function main() {
           noKontak: null,
           jamOperasional: null,
           fotoUrl: null,
+          deskripsi: null,
           createdById: null,
         }));
         await em

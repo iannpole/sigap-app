@@ -22,7 +22,7 @@ export default function LogoutButton() {
       type="button"
       onClick={onLogout}
       disabled={pending}
-      className="rounded-xl border border-ink/20 px-4 py-2 text-sm font-bold text-ink hover:bg-[#EFEEE6] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:opacity-60"
+      className="min-h-11 rounded-xl border border-current/25 px-4 py-2 text-sm font-bold hover:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F5FD1] disabled:opacity-60"
     >
       {pending ? 'Keluar…' : 'Keluar'}
     </button>

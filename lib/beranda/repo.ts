@@ -9,13 +9,13 @@ const KUNCI_FITUR = 917301;
 
 export async function listFiturAdmin() {
   const ds = await getDataSource();
-  return ds.getRepository(HomepageFeature).find({ order: { urutan: 'ASC', id: 'ASC' } });
+  return ds.getRepository<HomepageFeature>('HomepageFeature').find({ order: { urutan: 'ASC', id: 'ASC' } });
 }
 
 export async function listFiturPublik() {
   const ds = await getDataSource();
   return ds
-    .getRepository(HomepageFeature)
+    .getRepository<HomepageFeature>('HomepageFeature')
     .find({ where: { aktif: true }, order: { urutan: 'ASC', id: 'ASC' } });
 }
 
@@ -26,7 +26,7 @@ export async function tulisFitur<T>(
   const ds = await getDataSource();
   return ds.transaction(async (manager) => {
     await manager.query('SELECT pg_advisory_xact_lock($1)', [KUNCI_FITUR]);
-    const repo = manager.getRepository(HomepageFeature);
+    const repo = manager.getRepository<HomepageFeature>('HomepageFeature');
     const hasil = await kerja(repo);
     const aktif = await repo.countBy({ aktif: true });
     if (aktif < FITUR_AKTIF_MIN || aktif > FITUR_AKTIF_MAKS) {
@@ -61,11 +61,15 @@ export function fiturData(v: FiturInput) {
 
 export async function getFooterAdmin() {
   const ds = await getDataSource();
-  return ds.getRepository(SiteFooter).findOne({
+  const footer = await ds.getRepository<SiteFooter>('SiteFooter').findOne({
     where: {},
     relations: { tautan: true, sosial: true },
     order: { tautan: { urutan: 'ASC' }, sosial: { urutan: 'ASC' } },
   });
+  if (footer && !footer.urlLogo) {
+    footer.urlLogo = '/logo/sigap-logo.png';
+  }
+  return footer;
 }
 
 export async function getFooterPublik() {
@@ -85,7 +89,7 @@ export async function getFooterPublik() {
 export async function simpanFooter(v: FooterInput) {
   const ds = await getDataSource();
   return ds.transaction(async (manager) => {
-    const repo = manager.getRepository(SiteFooter);
+    const repo = manager.getRepository<SiteFooter>('SiteFooter');
     const existing = await repo.findOne({ where: {} });
     const footer = repo.create({
       id: existing?.id,
@@ -95,15 +99,16 @@ export async function simpanFooter(v: FooterInput) {
       hakCipta: v.hakCipta,
       alamat: v.alamat,
       tampilkanAlamat: v.tampilkanAlamat,
+      urlLogo: v.urlLogo,
     });
     const saved = await repo.save(footer);
 
-    await manager.getRepository(FooterLink).delete({ footerId: saved.id });
-    await manager.getRepository(SocialLink).delete({ footerId: saved.id });
-    await manager.getRepository(FooterLink).insert(
+    await manager.getRepository<FooterLink>('FooterLink').delete({ footerId: saved.id });
+    await manager.getRepository<SocialLink>('SocialLink').delete({ footerId: saved.id });
+    await manager.getRepository<FooterLink>('FooterLink').insert(
       v.tautan.map((t) => ({ ...t, footerId: saved.id }))
     );
-    await manager.getRepository(SocialLink).insert(
+    await manager.getRepository<SocialLink>('SocialLink').insert(
       v.sosial.map((s) => ({ ...s, footerId: saved.id }))
     );
     return saved.id;

@@ -30,13 +30,13 @@ export async function PUT(req: Request, ctx: Ctx) {
     if (Object.keys(set).length === 0) return fail("Tidak ada field yang diubah", 400);
 
     const ds = await getDataSource();
-    const repo = ds.getRepository(LokasiLayanan);
+    const repo = ds.getRepository<LokasiLayanan>("LokasiLayanan");
     if (!(await repo.existsBy({ id }))) return fail("Lokasi tidak ditemukan", 404);
     if (rest.subKategoriId !== undefined && !(await subKategoriExists(ds, rest.subKategoriId))) {
       return fail("subKategoriId tidak ditemukan", 400);
     }
 
-    await repo.createQueryBuilder().update().set(set as any).where("id = :id", { id }).execute();
+    await repo.createQueryBuilder().update().set(set).where("id = :id", { id }).execute();
     return ok(await loadLokasiProps(ds, id));
   } catch (err) {
     console.error("PUT /api/lokasi/[id]", err);
@@ -53,7 +53,7 @@ export async function DELETE(req: Request, ctx: Ctx) {
     if (id === null) return fail("id harus integer valid", 400);
 
     const ds = await getDataSource();
-    const res = await ds.getRepository(LokasiLayanan).delete({ id });
+    const res = await ds.getRepository<LokasiLayanan>("LokasiLayanan").delete({ id });
     if (!res.affected) return fail("Lokasi tidak ditemukan", 404);
     return ok(null, "Lokasi dihapus");
   } catch (err) {
@@ -72,7 +72,7 @@ export async function GET(_req: NextRequest, ctx: { params: Promise<{ id: string
   try {
     const ds = await getDataSource();
     const lokasi = await ds
-      .getRepository(LokasiLayanan)
+      .getRepository<LokasiLayanan>("LokasiLayanan")
       .createQueryBuilder("l")
       .innerJoinAndSelect("l.subKategori", "s")
       .innerJoinAndSelect("s.kategori", "k")

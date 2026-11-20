@@ -13,6 +13,17 @@ type Fitur = {
 
 type Status = "memuat" | "siap" | "gagal";
 
+const WARNA_IKON: Record<string, string> = {
+  kesehatan: "bg-[#C8261E] text-white",
+  keamanan: "bg-[#1F5FD1] text-white",
+  olahraga: "bg-[#1B7F37] text-white",
+  hiburan: "bg-[#F5C400] text-ink",
+  peta: "bg-[#F5C400] text-ink",
+  lokasi: "bg-[#F5C400] text-ink",
+  kategori: "bg-[#F5C400] text-ink",
+  "3d": "bg-[#1F5FD1] text-white",
+};
+
 export default function FiturBeranda() {
   const [items, setItems] = useState<Fitur[]>([]);
   const [status, setStatus] = useState<Status>("memuat");
@@ -61,7 +72,7 @@ export default function FiturBeranda() {
       {items.map((f) => {
         const isi = (
           <>
-            <span className="mb-5 grid h-11 w-11 place-items-center rounded-xl bg-[var(--mist)] text-brand">
+            <span className={`mb-5 grid h-11 w-11 place-items-center rounded-lg border-2 border-ink shadow-[3px_3px_0_#1B2433] ${WARNA_IKON[f.ikonKey] ?? "bg-[var(--mist)] text-[var(--tinta)]"}`}>
               <IkonBrick ikon={f.ikonKey} />
             </span>
             <h3 className="text-sm font-extrabold">{f.judul}</h3>
@@ -69,7 +80,7 @@ export default function FiturBeranda() {
           </>
         );
         const kelas =
-          "flex flex-col rounded-3xl bg-[var(--panel)] p-6 text-[var(--tinta)] shadow-card";
+          "flex flex-col border border-black/10 bg-[var(--panel)] p-6 text-[var(--tinta)] shadow-card transition hover:border-[#1F5FD1]";
         return f.tautan ? (
           <a
             key={f.id}

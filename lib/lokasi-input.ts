@@ -10,7 +10,26 @@ const TEXT_FIELDS = [
   ["noKontak", 30],
   ["jamOperasional", 100],
   ["fotoUrl", 255],
+  ["deskripsi", 500],
 ] as const;
+
+export interface DetailFasilitas {
+  statusOperasional?: string | null;
+  terverifikasi?: boolean;
+  namaVerifikator?: string | null;
+  catatanStatus?: string | null;
+  statusDiperbaruiPada?: string | null;
+  kapasitasTempatTidur?: number | null;
+  tempatTidurTersedia?: number | null;
+  jumlahDokterJaga?: number | null;
+  waktuResponsMenit?: number | null;
+  aksesAmbulans?: string | null;
+  dokumenKedatangan?: string | null;
+  hotlineDarurat?: string | null;
+  hotlineMedis?: string | null;
+  layananUtama?: string[];
+  galeri?: { url: string; caption?: string | null }[];
+}
 
 export interface LokasiInput {
   subKategoriId?: number;
@@ -22,6 +41,57 @@ export interface LokasiInput {
   noKontak?: string | null;
   jamOperasional?: string | null;
   fotoUrl?: string | null;
+  deskripsi?: string | null;
+  detailFasilitas?: DetailFasilitas | null;
+}
+
+const TEXT_DETAIL = ["statusOperasional", "namaVerifikator", "catatanStatus", "statusDiperbaruiPada", "aksesAmbulans", "dokumenKedatangan", "hotlineDarurat", "hotlineMedis"] as const;
+const ANGKA_DETAIL = ["kapasitasTempatTidur", "tempatTidurTersedia", "jumlahDokterJaga", "waktuResponsMenit"] as const;
+
+/** Membersihkan detail fasilitas: field kosong dibuang, batas panjang dan URL ditegakkan. */
+export function parseDetailFasilitas(v: unknown): { value: DetailFasilitas | null } | { error: string } {
+  if (v === null || v === undefined) return { value: null };
+  if (typeof v !== "object" || Array.isArray(v)) return { error: "detailFasilitas harus berupa object" };
+  const src = v as Record<string, unknown>;
+  const out: Record<string, unknown> = {};
+
+  for (const key of TEXT_DETAIL) {
+    const val = src[key];
+    if (val === undefined || val === null || val === "") continue;
+    if (typeof val !== "string" || val.trim().length > 200) return { error: `${key} harus string maksimal 200 karakter` };
+    out[key] = val.trim();
+  }
+  for (const key of ANGKA_DETAIL) {
+    const val = src[key];
+    if (val === undefined || val === null || val === "") continue;
+    if (typeof val !== "number" || !Number.isInteger(val) || val < 0 || val > 100000) return { error: `${key} harus integer 0-100000` };
+    out[key] = val;
+  }
+  if (src.terverifikasi !== undefined) {
+    if (typeof src.terverifikasi !== "boolean") return { error: "terverifikasi harus boolean" };
+    out.terverifikasi = src.terverifikasi;
+  }
+  if (src.layananUtama !== undefined) {
+    if (!Array.isArray(src.layananUtama) || src.layananUtama.length > 12) return { error: "layananUtama maksimal 12 item" };
+    const daftar = src.layananUtama.map((x) => (typeof x === "string" ? x.trim() : ""));
+    if (daftar.some((x) => x === "" || x.length > 60)) return { error: "setiap layananUtama harus teks 1-60 karakter" };
+    out.layananUtama = daftar;
+  }
+  if (src.galeri !== undefined) {
+    if (!Array.isArray(src.galeri) || src.galeri.length > 8) return { error: "galeri maksimal 8 foto" };
+    const galeri: { url: string; caption: string | null }[] = [];
+    for (const g of src.galeri as unknown[]) {
+      const item = g as { url?: unknown; caption?: unknown };
+      if (typeof item.url !== "string" || item.url.trim() === "" || !isSafeImageUrl(item.url.trim())) {
+        return { error: "url galeri harus https atau path lokal diawali /" };
+      }
+      const caption = typeof item.caption === "string" && item.caption.trim() !== "" ? item.caption.trim().slice(0, 120) : null;
+      galeri.push({ url: item.url.trim(), caption });
+    }
+    out.galeri = galeri;
+  }
+
+  return { value: Object.keys(out).length === 0 ? null : (out as DetailFasilitas) };
 }
 
 function num(v: unknown): number | null {
@@ -33,7 +103,15 @@ function num(v: unknown): number | null {
   return null;
 }
 
-/** Validasi body. `partial` = PUT (semua field opsional); POST mewajibkan field inti. */
+function isSafeImageUrl(value: string): boolean {
+  if (value.startsWith("/") && !value.startsWith("//")) return true;
+  try {
+    return new URL(value).protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
 export function parseLokasiBody(
   body: Record<string, unknown>,
   partial: boolean
@@ -69,7 +147,16 @@ export function parseLokasiBody(
     const t = v.trim();
     if (key === "nama" && !t) return { error: "nama tidak boleh kosong" };
     if (max !== null && t.length > max) return { error: `${key} maksimal ${max} karakter` };
+    if (key === "fotoUrl" && t !== "" && !isSafeImageUrl(t)) {
+      return { error: "fotoUrl harus berupa URL https atau path lokal diawali /" };
+    }
     out[key] = t === "" ? null : t;
+  }
+
+  if (body.detailFasilitas !== undefined) {
+    const detail = parseDetailFasilitas(body.detailFasilitas);
+    if ("error" in detail) return detail;
+    out.detailFasilitas = detail.value;
   }
 
   const hasLat = body.lat !== undefined;
@@ -88,13 +175,13 @@ export function parseLokasiBody(
 }
 
 export async function subKategoriExists(ds: DataSource, id: number) {
-  return ds.getRepository(SubKategori).existsBy({ id });
+  return ds.getRepository<SubKategori>("SubKategori").existsBy({ id });
 }
 
 /** Ambil lokasi + relasi, kembalikan `properties` GeoJSON-nya (atau null). */
 export async function loadLokasiProps(ds: DataSource, id: number) {
   const l = await ds
-    .getRepository(LokasiLayanan)
+    .getRepository<LokasiLayanan>("LokasiLayanan")
     .createQueryBuilder("l")
     .innerJoinAndSelect("l.subKategori", "s")
     .innerJoinAndSelect("s.kategori", "k")

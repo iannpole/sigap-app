@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Ilustrasi fasilitas olahraga brick</title>
+  <desc id="desc">Arena olahraga hijau dengan lapangan dan bola bergaya balok susun.</desc>
+  <rect width="640" height="360" fill="#F5FAF2"/>
+  <circle cx="520" cy="68" r="34" fill="#F5C400"/>
+  <path d="M0 282h640v78H0z" fill="#CDE8D2"/>
+  <g stroke="#1B2433" stroke-width="6" stroke-linejoin="round">
+    <path d="M118 142h404v158H118z" fill="#F8FAF7"/>
+    <path d="M92 119h456v34H92z" fill="#1B7F37"/>
+    <path d="M126 103h34v16h-34zm71 0h34v16h-34zm71 0h34v16h-34zm71 0h34v16h-34zm71 0h34v16h-34zm71 0h34v16h-34z" fill="#38A45A"/>
+    <path d="M156 188h328v112H156z" fill="#37A45A"/>
+    <path d="M320 188v112M156 244h328" fill="none" stroke="#FFF" stroke-width="5"/>
+    <circle cx="320" cy="244" r="30" fill="none" stroke="#FFF" stroke-width="5"/>
+    <path d="M179 211h58v66h-58zm224 0h58v66h-58z" fill="none" stroke="#FFF" stroke-width="5"/>
+    <circle cx="531" cy="285" r="36" fill="#F5C400"/>
+    <path d="M507 267l24-12 24 12 6 25-18 20h-24l-18-20z" fill="none"/>
+    <path d="M531 255v28m-24-16l24 16 24-16m-36 45l12-29 12 29" fill="none"/>
+    <path d="M69 200h24v100H69z" fill="#8A5A35"/>
+    <path d="M38 207l43-75 43 75z" fill="#1B7F37"/>
+  </g>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Ilustrasi fasilitas kesehatan brick</title>
+  <desc id="desc">Bangunan layanan kesehatan merah dengan ambulans dan pepohonan bergaya balok susun.</desc>
+  <rect width="640" height="360" fill="#FFF7E6"/>
+  <circle cx="528" cy="72" r="34" fill="#F5C400"/>
+  <path d="M0 285h640v75H0z" fill="#DCEFD9"/>
+  <path d="M54 300h532v20H54z" fill="#1B7F37" opacity=".28"/>
+  <g stroke="#1B2433" stroke-width="6" stroke-linejoin="round">
+    <path d="M176 126h286v174H176z" fill="#F2F4F7"/>
+    <path d="M205 88h228v44H205z" fill="#C8261E"/>
+    <path d="M228 72h34v16h-34zm57 0h34v16h-34zm57 0h34v16h-34zm57 0h34v16h-34z" fill="#E34A42"/>
+    <path d="M288 153h62v62h-62z" fill="#FFF"/>
+    <path d="M310 163h18v42h-18zm-12 12h42v18h-42z" fill="#C8261E" stroke="none"/>
+    <path d="M211 235h62v65h-62zm154 0h62v65h-62z" fill="#A9D8F5"/>
+    <path d="M289 238h60v62h-60z" fill="#FFF"/>
+    <path d="M319 238v62" fill="none"/>
+    <path d="M76 253h102v47H76z" fill="#FFF"/>
+    <path d="M102 228h51l25 25h-76z" fill="#FFF"/>
+    <path d="M111 238h34l13 15h-47z" fill="#A9D8F5"/>
+    <path d="M117 264h18v26h-18zm-4 4h26" fill="none" stroke="#C8261E"/>
+    <circle cx="101" cy="302" r="15" fill="#1B2433"/>
+    <circle cx="157" cy="302" r="15" fill="#1B2433"/>
+    <path d="M500 204h28v96h-28z" fill="#8A5A35"/>
+    <path d="M470 214l44-76 44 76z" fill="#1B7F37"/>
+    <path d="M480 178l34-58 34 58z" fill="#37A45A"/>
+  </g>
+</svg>

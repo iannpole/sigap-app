@@ -45,7 +45,7 @@ export default function HeroSection({ total, jumlahKategori }: Props) {
             <span className="hero-judul-biru text-blue">Bogor</span>
           </h1>
           <p className="mt-6 max-w-md text-base font-semibold leading-relaxed text-[var(--tinta)] md:text-lg">
-            Kesehatan, keamanan, dan olahraga dalam satu peta.
+            Kesehatan, keamanan, olahraga, dan hiburan dalam satu peta.
           </p>
           <button
             type="button"

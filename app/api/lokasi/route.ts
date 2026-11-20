@@ -39,8 +39,9 @@ export async function POST(req: Request) {
         noKontak: v.noKontak ?? null,
         jamOperasional: v.jamOperasional ?? null,
         fotoUrl: v.fotoUrl ?? null,
+        deskripsi: v.deskripsi ?? null,
         createdById: admin.id,
-      } as any)
+      } as Record<string, unknown>)
       .execute();
 
     const id = result.identifiers[0].id as number;
@@ -68,22 +69,28 @@ function parseNum(v: string): number | null {
 export async function GET(req: NextRequest) {
   const sp = req.nextUrl.searchParams;
 
-  const kategoriRaw = sp.get("kategoriId");
-  const subRaw = sp.get("subKategoriId");
-  const search = sp.get("search")?.trim() || null;
+  const kategoriRaw = sp.get("kategori") ?? sp.get("kategoriId");
+  const subRaw = sp.get("subkategori") ?? sp.get("subKategoriId");
+  const search = (sp.get("q") ?? sp.get("search"))?.trim() || null;
   const latRaw = sp.get("lat");
   const lngRaw = sp.get("lng");
   const radiusRaw = sp.get("radius");
+  const bboxRaw = sp.get("bbox");
+  const limitRaw = sp.get("limit");
+  const cursorRaw = sp.get("cursor");
+  const urut = sp.get("urut");
+
+  if (search && search.length > 100) return bad("q maksimal 100 karakter");
 
   let kategoriId: number | null = null;
   let subKategoriId: number | null = null;
   if (kategoriRaw !== null) {
     kategoriId = parseInt32(kategoriRaw);
-    if (kategoriId === null) return bad("kategoriId harus berupa integer valid");
+    if (kategoriId === null) return bad("kategori harus berupa integer valid");
   }
   if (subRaw !== null) {
     subKategoriId = parseInt32(subRaw);
-    if (subKategoriId === null) return bad("subKategoriId harus berupa integer valid");
+    if (subKategoriId === null) return bad("subkategori harus berupa integer valid");
   }
 
   if ((latRaw === null) !== (lngRaw === null)) {
@@ -102,13 +109,48 @@ export async function GET(req: NextRequest) {
   if (radiusRaw !== null) {
     if (lat === null) return bad("radius hanya valid jika lat dan lng dikirim");
     radius = parseNum(radiusRaw);
-    if (radius === null || radius <= 0) return bad("radius harus angka positif");
+    if (radius === null || radius <= 0 || radius > 100_000) {
+      return bad("radius harus angka antara 0 dan 100000 meter");
+    }
+  }
+
+  let limit = 100;
+  if (limitRaw !== null) {
+    const parsed = parseInt32(limitRaw);
+    if (parsed === null || parsed < 1 || parsed > 100) return bad("limit harus integer antara 1 dan 100");
+    limit = parsed;
+  }
+
+  let bbox: [number, number, number, number] | null = null;
+  if (bboxRaw !== null) {
+    const values = bboxRaw.split(",").map(parseNum);
+    if (values.length !== 4 || values.some((value) => value === null)) {
+      return bad("bbox harus berformat minLng,minLat,maxLng,maxLat");
+    }
+    const [minLng, minLat, maxLng, maxLat] = values as number[];
+    if (
+      minLng < -180 || maxLng > 180 || minLat < -90 || maxLat > 90 ||
+      minLng >= maxLng || minLat >= maxLat
+    ) {
+      return bad("bbox berada di luar rentang atau urutannya tidak valid");
+    }
+    bbox = [minLng, minLat, maxLng, maxLat];
+  }
+
+  if (urut !== null && urut !== "jarak") return bad('urut yang didukung hanya "jarak"');
+  if (urut === "jarak" && lat === null) return bad("urut=jarak memerlukan lat dan lng");
+
+  let cursor: number | null = null;
+  if (cursorRaw !== null) {
+    cursor = parseInt32(cursorRaw);
+    if (cursor === null) return bad("cursor harus berupa integer valid");
+    if (urut === "jarak") return bad("cursor belum didukung bersama urut=jarak");
   }
 
   try {
     const ds = await getDataSource();
     const qb = ds
-      .getRepository(LokasiLayanan)
+      .getRepository<LokasiLayanan>("LokasiLayanan")
       .createQueryBuilder("l")
       .innerJoinAndSelect("l.subKategori", "s")
       .innerJoinAndSelect("s.kategori", "k");
@@ -118,6 +160,12 @@ export async function GET(req: NextRequest) {
     if (search) {
       const escaped = search.replace(/[\\%_]/g, "\\$&");
       qb.andWhere("(l.nama ILIKE :q OR l.alamat ILIKE :q)", { q: `%${escaped}%` });
+    }
+    if (bbox) {
+      qb.andWhere(
+        "ST_Intersects(l.koordinat::geometry, ST_MakeEnvelope(:minLng, :minLat, :maxLng, :maxLat, 4326))",
+        { minLng: bbox[0], minLat: bbox[1], maxLng: bbox[2], maxLat: bbox[3] }
+      );
     }
 
     const hasGeo = lat !== null && lng !== null;
@@ -130,15 +178,26 @@ export async function GET(req: NextRequest) {
       }
       qb.orderBy("jarak", "ASC").addOrderBy("l.id", "ASC");
     } else {
+      if (cursor !== null) qb.andWhere("l.id > :cursor", { cursor });
       qb.orderBy("l.id", "ASC");
     }
 
+    qb.take(limit + 1);
     const { entities, raw } = await qb.getRawAndEntities();
-    const features = entities.map((e, i) =>
+    const page = entities.slice(0, limit);
+    const features = page.map((e, i) =>
       toFeature(e, hasGeo ? Number(raw[i].jarak) : undefined)
     );
 
-    return NextResponse.json({ type: "FeatureCollection", features });
+    return NextResponse.json({
+      type: "FeatureCollection",
+      features,
+      metadata: {
+        jumlah: features.length,
+        limit,
+        nextCursor: entities.length > limit ? page[page.length - 1]?.id ?? null : null,
+      },
+    });
   } catch (err) {
     console.error("GET /api/lokasi", err);
     return NextResponse.json({ error: "Terjadi kesalahan server" }, { status: 500 });

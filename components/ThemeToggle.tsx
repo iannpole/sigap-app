@@ -27,7 +27,7 @@ export default function ThemeToggle() {
       onClick={pilih}
       aria-pressed={gelap}
       aria-label={gelap ? "Matikan mode gelap" : "Aktifkan mode gelap"}
-      className="grid h-10 w-10 place-items-center rounded-xl border border-black/10 bg-[var(--panel)] text-[var(--tinta)] transition hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue"
+      className="grid h-11 w-11 place-items-center rounded-xl border border-black/10 bg-[var(--panel)] text-[var(--tinta)] transition hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue"
     >
       {gelap ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
     </button>

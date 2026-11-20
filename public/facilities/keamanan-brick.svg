@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Ilustrasi fasilitas keamanan brick</title>
+  <desc id="desc">Kantor layanan keamanan biru dengan kendaraan patroli bergaya balok susun.</desc>
+  <rect width="640" height="360" fill="#EEF4FF"/>
+  <circle cx="105" cy="70" r="32" fill="#F5C400"/>
+  <path d="M0 286h640v74H0z" fill="#D9E3F6"/>
+  <path d="M44 303h552v18H44z" fill="#1F5FD1" opacity=".2"/>
+  <g stroke="#1B2433" stroke-width="6" stroke-linejoin="round">
+    <path d="M167 134h306v166H167z" fill="#F8FAFD"/>
+    <path d="M145 111h350v34H145z" fill="#1F5FD1"/>
+    <path d="M176 95h34v16h-34zm64 0h34v16h-34zm64 0h34v16h-34zm64 0h34v16h-34zm64 0h34v16h-34z" fill="#4A7EE0"/>
+    <path d="M284 159h72v65h-72z" fill="#FFF"/>
+    <path d="M320 170l22 9v16c0 17-10 29-22 35-12-6-22-18-22-35v-16z" fill="#1F5FD1"/>
+    <path d="M203 237h62v63h-62zm172 0h62v63h-62z" fill="#B9D7FF"/>
+    <path d="M286 239h68v61h-68z" fill="#FFF"/>
+    <path d="M320 239v61" fill="none"/>
+    <path d="M69 258h124v42H69z" fill="#FFF"/>
+    <path d="M93 234h64l36 24H69z" fill="#FFF"/>
+    <path d="M105 243h44l21 15H95z" fill="#B9D7FF"/>
+    <path d="M109 267h53" fill="none" stroke="#1F5FD1" stroke-width="12"/>
+    <path d="M124 225h25v9h-25z" fill="#C8261E"/>
+    <circle cx="96" cy="302" r="15" fill="#1B2433"/>
+    <circle cx="171" cy="302" r="15" fill="#1B2433"/>
+    <path d="M521 207h26v93h-26z" fill="#8A5A35"/>
+    <path d="M489 214l45-78 45 78z" fill="#1B7F37"/>
+  </g>
+</svg>

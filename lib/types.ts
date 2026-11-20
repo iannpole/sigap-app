@@ -1,11 +1,13 @@
 export interface SubKategori {
   id: number;
   namaSubKategori: string;
+  jumlahLokasi: number;
 }
 
 export interface Kategori {
   id: number;
   namaKategori: string;
+  jumlahLokasi: number;
   subKategori: SubKategori[];
 }
 
@@ -21,6 +23,9 @@ export interface Lokasi {
   noKontak: string | null;
   jamOperasional: string | null;
   fotoUrl: string | null;
+  deskripsi: string | null;
+  detailFasilitas: import("@/lib/lokasi-input").DetailFasilitas | null;
+  jarakMeter: number | null;
   lat: number;
   lng: number;
 }

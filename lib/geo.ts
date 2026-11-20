@@ -16,6 +16,9 @@ export function formatKm(v: number) {
 
 export function withDistance(items: Lokasi[], origin: { lat: number; lng: number }): LokasiView[] {
   return items
-    .map((l) => ({ ...l, distance: distanceKm(origin.lat, origin.lng, l.lat, l.lng) }))
+    .map((l) => ({
+      ...l,
+      distance: l.jarakMeter === null ? distanceKm(origin.lat, origin.lng, l.lat, l.lng) : l.jarakMeter / 1000,
+    }))
     .sort((a, b) => a.distance - b.distance);
 }

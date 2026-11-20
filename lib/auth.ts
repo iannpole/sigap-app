@@ -74,7 +74,7 @@ export async function getAuthAdmin(
 
   const ds = await getDataSource();
   // passwordHash has select:false, so it is never loaded here.
-  const admin = await ds.getRepository(Admin).findOneBy({ id: payload.adminId });
+  const admin = await ds.getRepository<Admin>("Admin").findOneBy({ id: payload.adminId });
   return admin ? { id: admin.id, username: admin.username } : null;
 }
 

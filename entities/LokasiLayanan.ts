@@ -62,6 +62,12 @@ export class LokasiLayanan {
   @Column({ name: 'foto_url', type: 'varchar', length: 255, nullable: true })
   fotoUrl!: string | null;
 
+  @Column({ name: 'deskripsi', type: 'varchar', length: 500, nullable: true })
+  deskripsi!: string | null;
+
+  @Column({ name: 'detail_fasilitas', type: 'jsonb', nullable: true })
+  detailFasilitas!: Record<string, unknown> | null;
+
   @Index()
   @Column({ name: 'created_by', type: 'int', nullable: true })
   createdById!: number | null;

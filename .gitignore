@@ -80,5 +80,13 @@ skills-lock.json
 *.md
 !README.md
 
-# Windows reserved device name created by a stray redirect
+# Local screenshots and Windows reserved device name created by a stray redirect
+error-*.png
 nul
+
+# Design references: layout acuan, tidak dipakai aplikasi
+/referensi/
+
+# Aset desain lama yang tidak dirujuk kode mana pun
+/public/illustrations/footer-sigap-wordmark.svg
+/public/logo/sigap-footer-mark.svg

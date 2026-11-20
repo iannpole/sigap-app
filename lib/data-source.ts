@@ -3,7 +3,6 @@ import { DataSource } from 'typeorm';
 import { entities } from '../entities';
 
 declare global {
-  // eslint-disable-next-line no-var
   var __typeormDataSourcePromise: Promise<DataSource> | undefined;
 }
 
@@ -19,7 +18,12 @@ export async function getDataSource(): Promise<DataSource> {
     try {
       const ds = await globalThis.__typeormDataSourcePromise;
       if (ds.isInitialized) {
-        return ds;
+        // Dev server hot reload caches old entity metadata; recreate when a known column is missing.
+        const meta = ds.hasMetadata('LokasiLayanan') ? ds.getMetadata('LokasiLayanan') : null;
+        if (meta && meta.findColumnWithPropertyName('detailFasilitas') && ds.hasMetadata('BerandaSection') && ds.hasMetadata('BerandaGambar')) {
+          return ds;
+        }
+        await ds.destroy().catch(() => {});
       }
     } catch {
       // Reset if the cached promise failed

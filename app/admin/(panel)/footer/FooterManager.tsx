@@ -14,6 +14,7 @@ type Form = {
   tampilkanAlamat: boolean;
   tautan: Tautan[];
   sosial: Sosial[];
+  urlLogo: string;
 };
 
 const KOSONG: Form = {
@@ -25,6 +26,7 @@ const KOSONG: Form = {
   tampilkanAlamat: false,
   tautan: [],
   sosial: [],
+  urlLogo: '/logo/sigap-logo.png',
 };
 
 const PLATFORM: Sosial['platform'][] = ['instagram', 'youtube', 'x', 'facebook', 'tiktok'];
@@ -62,6 +64,7 @@ export default function FooterManager() {
           tampilkanAlamat: !!d.tampilkanAlamat,
           tautan: (d.tautan ?? []).map((t: Tautan) => ({ label: t.label, url: t.url, urutan: t.urutan })),
           sosial: (d.sosial ?? []).map((s: Sosial) => ({ platform: s.platform, url: s.url, urutan: s.urutan })),
+          urlLogo: d.urlLogo ?? '/logo/sigap-logo.png',
         });
       }
       setStatus('siap');
@@ -88,6 +91,7 @@ export default function FooterManager() {
           ...form,
           email: form.email || null,
           alamat: form.alamat || null,
+          urlLogo: form.urlLogo,
         }),
       });
       const json = await res.json().catch(() => null);

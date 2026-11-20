@@ -48,6 +48,14 @@ const GAMBAR: Record<IkonKey, React.ReactNode> = {
       <path d="M4 12h16M12 4v16" />
     </>
   ),
+  hiburan: (
+    <>
+      <path d="M4 20h16" />
+      <path d="M6 20V10h12v10" />
+      <path d="M9 10l3-6 3 6" />
+      <path d="M12 13v4" />
+    </>
+  ),
   info: (
     <>
       <rect x="4" y="4" width="16" height="16" rx="2" />

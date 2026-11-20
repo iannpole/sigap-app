@@ -1,4 +1,4 @@
-export const IKON_KEYS = ['peta', 'kategori', 'lokasi', '3d', 'kesehatan', 'keamanan', 'olahraga', 'info'] as const;
+export const IKON_KEYS = ['peta', 'kategori', 'lokasi', '3d', 'kesehatan', 'keamanan', 'olahraga', 'hiburan', 'info'] as const;
 export type IkonKey = (typeof IKON_KEYS)[number];
 
 export const SOSIAL_DOMAIN = {

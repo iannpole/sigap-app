@@ -1,4 +1,5 @@
 import FiturManager from './FiturManager';
+import SectionManager from './SectionManager';
 
 export default function BerandaAdminPage() {
   return (
@@ -9,6 +10,9 @@ export default function BerandaAdminPage() {
       </p>
       <div className="mt-6">
         <FiturManager />
+      </div>
+      <div className="mt-10">
+        <SectionManager />
       </div>
     </section>
   );

@@ -116,7 +116,7 @@ export async function GET(req: NextRequest) {
     const dataSource = await getDataSource();
     const point = "ST_SetSRID(ST_MakePoint(:lng, :lat), 4326)::geography";
     const query = dataSource
-      .getRepository(LokasiLayanan)
+      .getRepository<LokasiLayanan>("LokasiLayanan")
       .createQueryBuilder("location")
       .innerJoin("location.subKategori", "subcategory")
       .innerJoin("subcategory.kategori", "category")

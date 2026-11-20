@@ -63,6 +63,7 @@ export const footerSchema = z.object({
     .nullish()
     .transform((v) => (v ? v : null)),
   tampilkanAlamat: z.boolean(),
+  urlLogo: z.string().trim().max(2048).refine((v) => v === null || new URL(v, location.origin).protocol === 'https:', 'URL logo harus https'),
   tautan: z
     .array(
       z.object({

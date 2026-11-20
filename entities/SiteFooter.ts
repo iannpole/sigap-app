@@ -25,6 +25,9 @@ export class SiteFooter {
   @Column({ name: 'tampilkan_alamat', type: 'boolean', default: false })
   tampilkanAlamat!: boolean;
 
+  @Column({ name: 'url_logo', type: 'varchar', length: 200, nullable: true })
+  urlLogo!: string | null;
+
   @OneToMany(() => FooterLink, (link) => link.footer)
   tautan!: FooterLink[];
 
